@@ -10,14 +10,14 @@ env:
      CF_TARGET_URL="https://api.ng.bluemix.net"
 
 script:
-  - docker build -t "watson-conversation-simple#$TRAVIS_BRANCH" .
+  - docker build -t "watson-conversation-simple:$TRAVIS_BRANCH" .
 
 after-script:
   - docker images
 
 before_deploy:
   - docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASSWORD"
-  - docker tag "watson-conversation-simple#$TRAVIS_BRANCH" "adamkingit/watson-conversation-simple#$TRAVIS_BRANCH"
+  - docker tag "watson-conversation-simple:$TRAVIS_BRANCH" "adamkingit/watson-conversation-simple:$TRAVIS_BRANCH"
   - docker push "adamkingit/watson-conversation-simple:$TRAVIS_BRANCH"
 
 deploy:
