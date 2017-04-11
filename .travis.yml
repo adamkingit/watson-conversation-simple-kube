@@ -10,7 +10,7 @@ env:
      CF_TARGET_URL="https://api.ng.bluemix.net"
 
 script:
-  - docker build -t "watson-conversation-simple#$TRAVIS_BRANCH"
+  - docker build -t "watson-conversation-simple#$TRAVIS_BRANCH" .
 
 after-script:
   - docker images
