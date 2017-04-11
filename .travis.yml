@@ -1,0 +1,30 @@
+sudo: required
+
+services:
+  - docker
+
+env:
+  global:
+     - CF_TARGET_URL="https://api.ng.bluemix.net"
+     - DOCKER_TAG=watson-conversation-simple:"$TRAVIS_BRANCH"
+
+script:
+  - echo "$TRAVIS_BRANCH"
+  - echo "$DOCKER_TAG"
+  - docker build -t "watson-conversation-simple:$TRAVIS_BRANCH" .
+  - docker images
+
+after-script:
+  - docker images
+
+before_deploy:
+  - docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASSWORD"
+  - docker tag "watson-conversation-simple:$TRAVIS_BRANCH" "adamkingit/watson-conversation-simple:$TRAVIS_BRANCH"
+  - docker push "adamkingit/watson-conversation-simple:$TRAVIS_BRANCH"
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: ./deploy_rollup.sh
+    on:
+      branch: master
