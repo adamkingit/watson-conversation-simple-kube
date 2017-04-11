@@ -3,8 +3,6 @@ sudo: required
 services:
   - docker
 
-language: script
-
 env:
   global:
      CF_TARGET_URL="https://api.ng.bluemix.net"
