@@ -8,9 +8,10 @@ language: script
 env:
   global:
      CF_TARGET_URL="https://api.ng.bluemix.net"
+     DOCKER_TAG=watson-conversation-simple:""$TRAVIS_BRANCH"
 
 script:
-  - docker build -t "watson-conversation-simple:$TRAVIS_BRANCH" .
+  - docker build -t "$DOCKER_TAG" .
 
 after-script:
   - docker images
