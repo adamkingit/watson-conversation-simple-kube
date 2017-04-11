@@ -11,7 +11,7 @@ env:
 script:
   - echo "$TRAVIS_BRANCH"
   - echo "$DOCKER_TAG"
-  - docker build -t "$TRAVIS_BRANCH" .
+  - docker build -t "watson-conversation-simple:$TRAVIS_BRANCH" .
   - docker images
 
 after-script:
