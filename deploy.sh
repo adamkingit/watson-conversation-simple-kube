@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Create Guestbook"
+echo "Create pod"
 IP_ADDR=$(bx cs workers $CLUSTER_NAME | grep deployed | awk '{ print $2 }')
 if [ -z $IP_ADDR ]; then
   echo "$CLUSTER_NAME not created or workers not ready"
@@ -21,7 +21,7 @@ kubectl delete --ignore-not-found=true   -f car-dashboard-pod.yml
 echo -e "Creating pods"
 kubectl create -f car-dashboard-pod.yml
 
-PORT=$(kubectl get services | grep frontend | sed 's/.*://g' | sed 's/\/.*//g')
+PORT=$(kubectl get services | grep bot-son | sed 's/.*://g' | sed 's/\/.*//g')
 
 echo ""
 echo "View the app at http://$IP_ADDR:$PORT"
