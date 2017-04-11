@@ -13,6 +13,6 @@ RUN curl -L  https://github.com/watson-developer-cloud/conversation-simple/archi
 
 RUN npm install --production && npm cache clean
 
-COPY *.sh /usr/src/app
+COPY run-server.sh /usr/src/app/
 
 CMD [ "/usr/src/app/run-server.sh"]
