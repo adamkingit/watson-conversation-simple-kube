@@ -12,6 +12,7 @@ env:
 
 script:
   - docker build -t "$DOCKER_TAG" .
+  - docker images
 
 after-script:
   - docker images
