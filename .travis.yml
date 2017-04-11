@@ -12,7 +12,7 @@ env:
 
 script:
   - env
-  - docker build -t "$DOCKER_TAG" .
+  - docker build -t "$TRAVIS_BRANCH" .
   - docker images
 
 after-script:
