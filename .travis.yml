@@ -4,9 +4,10 @@ services:
 env:
   global:
      - CF_TARGET_URL="https://api.ng.bluemix.net"
-     - DOCKER_TAG=watson-conversation-simple:"$TRAVIS_BRANCH"
+     - DOCKER_TAG="watson-conversation-simple:$TRAVIS_BRANCH"
 
 script:
+  - echo "DOCKER_TAG==$DOCKER_TAG"
   - docker build -t "$DOCKER_TAG" .
   - docker images
 
