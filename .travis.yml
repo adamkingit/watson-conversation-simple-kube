@@ -1,5 +1,3 @@
-sudo: required
-
 services:
   - docker
 
@@ -9,18 +7,15 @@ env:
      - DOCKER_TAG=watson-conversation-simple:"$TRAVIS_BRANCH"
 
 script:
-  - echo "$TRAVIS_BRANCH"
-  - echo "$DOCKER_TAG"
-  - docker build -t "watson-conversation-simple:$TRAVIS_BRANCH" .
+  - docker build -t "$DOCKER_TAG" .
   - docker images
 
 after-script:
-  - docker images
 
 before_deploy:
   - docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASSWORD"
-  - docker tag "watson-conversation-simple:$TRAVIS_BRANCH" "adamkingit/watson-conversation-simple:$TRAVIS_BRANCH"
-  - docker push "adamkingit/watson-conversation-simple:$TRAVIS_BRANCH"
+  - docker tag "$DOCKER_TAG" "adamkingit/$DOCKER_TAG"
+  - docker push "adamkingit/$DOCKER_TAG"
 
 deploy:
   - provider: script
